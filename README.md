@@ -13,7 +13,7 @@ SQL_Fundamentals/
 ├── docker-compose.yml            # infrastructure as code
 ├── .env                          # DB creds (ignored by Git)
 ├── init/
-│   └── sample_database_setup.sql # creates & populates tables
+│   └── 00_seed_playground_schema.sql # creates & populates tables
 └── README.md
 ```
 
