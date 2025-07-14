@@ -1,14 +1,20 @@
-
+# docker-compose.yml  (no version line needed)
 services:
   db:
-    image: postgres:16
-    container_name: sql_fundamentals_pg
+    image: postgres:14          # or 16 – any recent tag
+    container_name: pg          # optional name
     restart: unless-stopped
-    env_file: .env
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_DB: postgres     # okay to keep default
     ports:
       - "5432:5432"
     volumes:
+      # 1️⃣ persistent data volume
       - db_data:/var/lib/postgresql/data
+      # 2️⃣ seed scripts – mount the whole folder
       - ./init:/docker-entrypoint-initdb.d
+
 volumes:
   db_data:
