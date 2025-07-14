@@ -1,0 +1,17 @@
+# ◇ Secrets / credentials
+.env
+
+# ◇ Docker named volume (if ever bind‑mounted)
+db_data/
+
+# ◇ macOS artefacts
+.DS_Store
+
+# ◇ IDE / Editor configs
+.idea/
+.vscode/
+*.iml
+
+# ◇ Logs / temp
+*.log
+*.tmp
