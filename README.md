@@ -1,86 +1,92 @@
 
 # SQL Fundamentals – Docker + PostgreSQL Playground
 
-A self‑contained stack for practicing SQL joins, aggregates, and analytics queries.  
-Spin up Postgres 16 with one command, load the sample dataset, and connect from DataGrip (or any SQL client) in seconds.
+A self-contained stack for practicing SQL joins, aggregates, and analytics queries.
+Spin up Postgres 16 with one command, load the sample dataset, and connect from any SQL client in seconds.
 
 ---
 
-## 📂 Project layout
+## 📂 Project Layout
 
 ```
 SQL_Fundamentals/
-├── docker-compose.yml            # infrastructure as code
-├── .env                          # DB creds (ignored by Git)
+├── .gitignore
+├── GEMINI.md
+├── README.md
+├── docker-compose.yml
+├── docs/
+│   └── erd.png
 ├── init/
-│   └── 00_seed_playground_schema.sql # creates & populates tables
-└── README.md
+│   └── 00_seed_playground_schema.sql
+├── migrations/
+│   └── V1__baseline_schema.sql
+└── sql/
+    ├── aggregations/
+    └── joins/
 ```
 
 ---
 
 ## ⚙️ Prerequisites
 
-* **Docker Desktop** (or Docker Engine + Compose plugin)  
-* macOS / Linux / WSL2 shell with `bash`, `git`  
-* *(optional)* **DataGrip** – any SQL IDE/psql works
+*   **Docker Desktop** (or Docker Engine + Compose plugin)
+*   A shell environment (macOS, Linux, WSL2) with `git`.
 
 ---
 
-## 🚀 Quick‑start
+## 🚀 Quick-start
 
-```bash
-# clone & enter the repo
-git clone https://github.com/<your‑org>/SQL_Fundamentals.git
-cd SQL_Fundamentals
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/christianvuye/sql_fundamentals.git
+    cd sql_fundamentals
+    ```
 
-# launch Postgres in the background
-docker compose up -d
+2.  **Launch the PostgreSQL container:**
+    ```bash
+    docker compose up -d
+    ```
 
-# follow the log (Ctrl‑C to detach)
-docker compose logs -f db
-```
+3.  **Monitor the logs** to see when the database is ready:
+    ```bash
+    docker compose logs -f db
+    ```
+    When you see “database system is ready to accept connections,” the seed script has finished.
 
-When you see **“database system is ready to accept connections”** the seed script has finished.
-
-### Default connection parameters
+### Default Connection Parameters
 
 | Host      | Port | Database   | User     | Password |
-|-----------|------|------------|----------|----------|
+| :-------- | :--- | :--------- | :------- | :------- |
 | localhost | 5432 | playground | postgres | changeme |
 
 ---
 
-## 🖥️ Connecting from DataGrip
+## 🗃️ Database Schema
 
-1. **File ▸ New ▸ Data Source ▸ PostgreSQL**  
-2. Fill in the values above and click **Test Connection → OK**.  
-3. Right‑click the data source ▸ **Refresh** to see the tables.  
-4. Double‑click any table ▸ **Jump to Data** or open a new console and query away.
-
----
-
-## 🛠️ Useful commands
-
-| Action                           | Command                                                         |
-|----------------------------------|-----------------------------------------------------------------|
-| psql shell                       | `docker compose exec db psql -U postgres playground`            |
-| Stop containers (keep data)      | `docker compose down`                                           |
-| Stop **and wipe** everything     | `docker compose down -v`                                        |
-| Re‑seed after editing SQL        | `docker compose down -v && docker compose up -d`                |
-| Tail database log                | `docker compose logs -f db`                                     |
+*   The `init/00_seed_playground_schema.sql` script creates the tables and populates them with data. This script runs only once when the Docker volume is first created.
+*   The `migrations/V1__baseline_schema.sql` file defines the primary and foreign key constraints for the tables, which were not included in the initial seed script.
+*   The Entity-Relationship Diagram (ERD) in `docs/erd.png` provides a visual overview of the table structures.
 
 ---
 
-## 🔐 Secrets & local state
+## ✍️ SQL Practice
 
-* `.env` stores `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB`.  
-* Docker volume **db_data** persists database files outside the container.  
-* Both are excluded from Git via `.gitignore`.
+The `sql/` directory is where you can add your own SQL scripts to practice. It's organized into subdirectories for different SQL concepts (e.g., `joins`, `aggregations`).
+
+---
+
+## 🛠️ Useful Docker Commands
+
+| Action                           | Command                                          |
+| :------------------------------- | :----------------------------------------------- |
+| Connect via psql shell           | `docker compose exec db psql -U postgres playground` |
+| Stop containers (persists data)  | `docker compose down`                            |
+| Stop and **wipe all data**       | `docker compose down -v`                         |
+| Re-apply migrations and re-seed  | `docker compose down -v && docker compose up -d` |
+| Tail the database log            | `docker compose logs -f db`                      |
 
 ---
 
 ## 📝 License
 
-MIT (or choose your favourite).  
-Dataset provided for educational use only.
+MIT. The dataset is provided for educational use only.
