@@ -7,6 +7,20 @@
 -- This creates the revenue_per_employee view that this exercise uses.
 -- =============================================================================
 */
+--
+-- PREREQUISITES:
+-- Make sure to run the database migrations first:
+--   V2__create_revenue_per_employee_view.sql
+-- This creates the revenue_per_employee view that this exercise uses.
+-- =============================================================================
+--
+-- PREREQUISITES:
+-- Make sure to run the database migrations first:
+--   V2__create_revenue_per_employee_view.sql
+-- This creates the revenue_per_employee view that this exercise uses.
+-- =============================================================================
+*/
+*/
 -- SQL Practice Exercise: Tier 4, Question 2
 --
 -- Prompt:
@@ -28,7 +42,24 @@
 -- This creates the revenue_per_employee view that this exercise uses.
 -- =============================================================================
 */
+--
+-- PREREQUISITES:
+-- Make sure to run the database migrations first:
+--   V2__create_revenue_per_employee_view.sql
+-- This creates the revenue_per_employee view that this exercise uses.
+-- =============================================================================
+--
+-- PREREQUISITES:
+-- Make sure to run the database migrations first:
+--   V2__create_revenue_per_employee_view.sql
+-- This creates the revenue_per_employee view that this exercise uses.
+-- =============================================================================
 */
+*/
+*/
+
+-- NOTE: The revenue_per_employee view is already created by migration V2.
+-- We will use the existing view instead of creating a new one.
 
 -- NOTE: The revenue_per_employee view is already created by migration V2.
 -- We will use the existing view instead of creating a new one.
