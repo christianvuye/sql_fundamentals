@@ -16,14 +16,9 @@
 -- =============================================================================
 */
 
--- Step 1: Create a VIEW to identify the single most valuable customer.
--- This migration should be saved as V7_create_vip_customer_view.sql (example name)
-CREATE OR REPLACE VIEW customer_highest_lifetime_spend AS
-    SELECT customer_id
-    FROM orders
-    GROUP BY customer_id
-    ORDER BY SUM(total_amount) DESC
-    LIMIT 1;
+-- Step 1: The `customer_highest_lifetime_spend` view is already defined in the
+-- V7__create_customer_highest_lifetime_spend_view.sql migration. Ensure that
+-- migration is applied before running this query.
 
 
 -- Step 2: Final query to find the employee who sold a laptop to the VIP customer.
