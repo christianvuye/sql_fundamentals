@@ -19,7 +19,7 @@
 SELECT
     p.product_name
 FROM
-    quantum_laptop_orders AS qlo
+    quantum_laptop_order AS qlo
 INNER JOIN
     order_items AS oi ON qlo.order_id = oi.order_id
 INNER JOIN
