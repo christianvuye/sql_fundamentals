@@ -1,3 +1,7 @@
+-- University Database Schema and Seed Data
+CREATE DATABASE university;
+\connect university                
+
 -- Drop tables in reverse order of creation to avoid foreign key constraints
 DROP TABLE IF EXISTS enrollments;
 DROP TABLE IF EXISTS sections;
